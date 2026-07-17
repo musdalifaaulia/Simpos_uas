@@ -35,11 +35,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('/branch', BranchController::class)->middleware('role:Superadmin');
     Route::resource('/category', CategoryController::class)->middleware('role:Superadmin');
     Route::resource('/product', ProductController::class)->middleware('role:Superadmin');
-    Route::resource('/inventory', InventoryController::class);
+    Route::resource('/inventory', InventoryController::class)->middleware('role:Superadmin,Admin');
     Route::resource('/transaction', TransactionController::class);
-    Route::resource('/stock-transfer', StockTransferController::class);
-    Route::resource('/expense', ExpenseController::class);
+    Route::resource('/stock-transfer', StockTransferController::class)->middleware('role:Superadmin,Admin');
+    Route::resource('/expense', ExpenseController::class)->middleware('role:Superadmin,Admin');
 
-    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
-    Route::put('/setting/{setting}/update', [SettingController::class, 'update'])->name('setting.update');
+    Route::get('/setting', [SettingController::class, 'index'])->name('setting.index')->middleware('role:Superadmin');
+    Route::put('/setting/{setting}/update', [SettingController::class, 'update'])->name('setting.update')->middleware('role:Superadmin');
 });

@@ -267,7 +267,6 @@
     <aside id="sidebar" class="sidebar">
 
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('dashboard.*') ? '' : 'collapsed' }}"
                     href="{{ route('dashboard.index') }}">
@@ -276,15 +275,14 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('setting.*') ? '' : 'collapsed' }}"
-                    href="{{ route('setting.index') }}">
-                    <i class='bx bx-cog'></i>
-                    <span>Setting</span>
-                </a>
-            </li>
-
-            @if (Auth::user()->role == 'Superadmin')
+            @if (Auth::user()->role === 'Superadmin')
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('setting.*') ? '' : 'collapsed' }}"
+                        href="{{ route('setting.index') }}">
+                        <i class='bx bx-cog'></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('user.*') ? '' : 'collapsed' }}"
                         href="{{ route('user.index') }}">
@@ -296,7 +294,7 @@
                     <a class="nav-link {{ request()->routeIs('branch.*') ? '' : 'collapsed' }}"
                         href="{{ route('branch.index') }}">
                         <i class='bx bx-store'></i>
-                        <span>Cabang</span>
+                        <span>Manajemen Cabang</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -315,29 +313,31 @@
                 </li>
             @endif
 
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('inventory.*') ? '' : 'collapsed' }}"
-                    href="{{ route('inventory.index') }}">
-                    <i class='bx bx-archive-in'></i>
-                    <span>Stok / Inventaris</span>
-                </a>
-            </li>
+            @if (in_array(Auth::user()->role, ['Superadmin', 'Admin']))
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('inventory.*') ? '' : 'collapsed' }}"
+                        href="{{ route('inventory.index') }}">
+                        <i class='bx bx-archive-in'></i>
+                        <span>Stok / Inventaris</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('stock-transfer.*') ? '' : 'collapsed' }}"
-                    href="{{ route('stock-transfer.index') }}">
-                    <i class='bx bx-transfer'></i>
-                    <span>Mutasi Stok</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('stock-transfer.*') ? '' : 'collapsed' }}"
+                        href="{{ route('stock-transfer.index') }}">
+                        <i class='bx bx-transfer'></i>
+                        <span>Mutasi Stok</span>
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ request()->routeIs('expense.*') ? '' : 'collapsed' }}"
-                    href="{{ route('expense.index') }}">
-                    <i class='bx bx-wallet'></i>
-                    <span>Pengeluaran (Biaya)</span>
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('expense.*') ? '' : 'collapsed' }}"
+                        href="{{ route('expense.index') }}">
+                        <i class='bx bx-wallet'></i>
+                        <span>Pengeluaran (Biaya)</span>
+                    </a>
+                </li>
+            @endif
 
             <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('transaction.*') ? '' : 'collapsed' }}"
@@ -346,8 +346,6 @@
                     <span>Kasir / POS</span>
                 </a>
             </li>
-
-
         </ul>
 
     </aside><!-- End Sidebar-->

@@ -12,6 +12,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Address</th>
                         <th scope="col">Phone</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -22,6 +23,13 @@
                             <td>{{ $branch->name }}</td>
                             <td>{{ $branch->address }}</td>
                             <td>{{ $branch->phone }}</td>
+                            <td>
+                                @if($branch->is_active)
+                                    <span class="badge bg-success">Aktif</span>
+                                @else
+                                    <span class="badge bg-danger">Nonaktif</span>
+                                @endif
+                            </td>
                             <td>
                                 <button type="button" class="btn btn-info btn-sm btn-detail"
                                     data-route="{{ route('branch.show', $branch) }}">
