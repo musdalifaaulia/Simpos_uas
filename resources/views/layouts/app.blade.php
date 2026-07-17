@@ -332,6 +332,14 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('expense.*') ? '' : 'collapsed' }}"
+                    href="{{ route('expense.index') }}">
+                    <i class='bx bx-wallet'></i>
+                    <span>Pengeluaran (Biaya)</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('transaction.*') ? '' : 'collapsed' }}"
                     href="{{ route('transaction.index') }}">
                     <i class='bx bx-cart'></i>
