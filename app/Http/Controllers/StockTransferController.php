@@ -89,14 +89,12 @@ class StockTransferController extends Controller
 
             // 3. Record the Transfer
             StockTransfer::create([
+                'reference_number' => 'TRF-' . date('Ymd') . '-' . strtoupper(\Illuminate\Support\Str::random(4)),
                 'product_id' => $request->product_id,
                 'from_branch_id' => $branchId,
                 'to_branch_id' => $request->to_branch_id,
-                'user_id' => Auth::id(),
                 'quantity' => $qtyToTransfer,
-                'transfer_date' => now(),
-                'status' => 'Completed',
-                'notes' => $request->notes
+                'status' => 'Completed'
             ]);
 
             DB::commit();

@@ -9,20 +9,21 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Ref. Number</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Produk</th>
                         <th scope="col">Dari Cabang</th>
                         <th scope="col">Ke Cabang</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Admin/User</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($transfers as $tf)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $tf->transfer_date->format('d/m/Y') }}</td>
+                            <td><strong>{{ $tf->reference_number }}</strong></td>
+                            <td>{{ $tf->created_at->format('d/m/Y') }}</td>
                             <td>{{ $tf->product?->name }}</td>
                             <td><span class="badge bg-secondary">{{ $tf->fromBranch?->name }}</span></td>
                             <td><span class="badge bg-info text-dark">{{ $tf->toBranch?->name }}</span></td>
@@ -34,7 +35,6 @@
                                     <span class="badge bg-warning">{{ $tf->status }}</span>
                                 @endif
                             </td>
-                            <td>{{ $tf->user?->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>

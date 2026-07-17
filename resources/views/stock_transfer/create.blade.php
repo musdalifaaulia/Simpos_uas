@@ -51,11 +51,6 @@
                     @enderror
                     <small class="text-danger d-none" id="qty-warning">Kuantitas melebihi stok yang tersedia!</small>
                 </div>
-
-                <div class="col-md-6 mb-3">
-                    <label for="notes" class="form-label">Catatan / Alasan Mutasi</label>
-                    <textarea class="form-control" id="notes" name="notes">{{ old('notes') }}</textarea>
-                </div>
             </div>
 
             <button type="submit" class="btn btn-primary" id="btn-submit"><i class="bx bx-transfer"></i> Proses Mutasi</button>
