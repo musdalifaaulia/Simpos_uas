@@ -10,7 +10,7 @@
     <title>{{ $setting->app_name }} | {{ $title }}</title>
     <meta content="{{ $setting->description }}" name="description">
     <meta content="{{ $setting->keywords }}" name="keywords">
-    <meta content="Tamus Tahir" name="author">
+    <meta content="Musdalifa Aulia" name="author">
 
     <!-- Favicons -->
     <link href="{{ $setting->logo ? asset('storage/' . $setting->logo) : asset('niceadmin/img/laravel.png') }}"
@@ -169,7 +169,7 @@
     </style>
 
     <!-- =======================================================
-  * Template Name: NiceAdmin
+  * Template Name: SIMPOS
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Updated: Apr 20 2024 with Bootstrap v5.3.3
   * Author: BootstrapMade.com

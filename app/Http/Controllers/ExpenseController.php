@@ -29,9 +29,8 @@ class ExpenseController extends Controller
     {
         $validate = $request->validate([
             'amount' => 'required|numeric|min:0',
-            'category' => 'required|string',
-            'date' => 'required|date',
-            'notes' => 'nullable|string'
+            'description' => 'required|string',
+            'expense_date' => 'required|date'
         ]);
 
         $validate['branch_id'] = Auth::user()->branch_id ?? 1;

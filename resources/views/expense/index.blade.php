@@ -11,10 +11,10 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Kategori</th>
+                        <th scope="col">Deskripsi</th>
                         <th scope="col">Jumlah (Rp)</th>
                         <th scope="col">Cabang</th>
-                        <th scope="col">Catatan</th>
+                        
                         <th scope="col" class="no-print">Action</th>
                     </tr>
                 </thead>
@@ -22,11 +22,11 @@
                     @foreach ($expenses as $exp)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $exp->date->format('d/m/Y') }}</td>
-                            <td>{{ $exp->category }}</td>
+                            <td>{{ $exp->expense_date->format('d/m/Y') }}</td>
+                            <td>{{ $exp->description }}</td>
                             <td class="text-end fw-bold text-danger">- Rp {{ number_format($exp->amount, 0, ',', '.') }}</td>
                             <td>{{ $exp->branch?->name }}</td>
-                            <td>{{ $exp->notes }}</td>
+                            
                             <td class="no-print">
                                 <button type="button" class="btn btn-danger btn-sm btn-delete" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal" data-route="{{ route('expense.destroy', $exp) }}">

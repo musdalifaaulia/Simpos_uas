@@ -6,20 +6,17 @@
             
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="date" class="form-label">Tanggal</label>
-                    <input type="date" class="form-control @error('date') is-invalid @enderror" id="date" name="date" value="{{ old('date', date('Y-m-d')) }}">
-                    @error('date') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    <label for="expense_date" class="form-label">Tanggal</label>
+                    <input type="date" class="form-control @error('expense_date') is-invalid @enderror" id="expense_date" name="expense_date" value="{{ old('expense_date', date('Y-m-d')) }}">
+                    @error('expense_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div> @enderror
                 </div>
                 
                 <div class="col-md-6 mb-3">
-                    <label for="category" class="form-label">Kategori Pengeluaran</label>
-                    <select class="form-control @error('category') is-invalid @enderror" id="category" name="category">
-                        <option value="Operasional" {{ old('category') == 'Operasional' ? 'selected' : '' }}>Operasional (Listrik, Air, Internet)</option>
-                        <option value="Gaji Karyawan" {{ old('category') == 'Gaji Karyawan' ? 'selected' : '' }}>Gaji Karyawan</option>
-                        <option value="Inventaris/Alat" {{ old('category') == 'Inventaris/Alat' ? 'selected' : '' }}>Inventaris/Alat</option>
-                        <option value="Lainnya" {{ old('category') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
-                    </select>
-                    @error('category') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                    <label for="description" class="form-label">Deskripsi Pengeluaran (Kategori/Catatan)</label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
+                    @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div> @enderror
                 </div>
             </div>
 
@@ -30,10 +27,7 @@
                     @error('amount') <div class="invalid-feedback">{{ $message }}</div> @enderror
                 </div>
                 
-                <div class="col-md-6 mb-3">
-                    <label for="notes" class="form-label">Catatan</label>
-                    <textarea class="form-control" id="notes" name="notes">{{ old('notes') }}</textarea>
-                </div>
+                
             </div>
 
             <button type="submit" class="btn btn-primary"><i class="bx bx-save"></i> Simpan Pengeluaran</button>

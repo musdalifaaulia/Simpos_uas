@@ -12,11 +12,11 @@ class Expense extends Model
     use HasFactory;
 
     protected $fillable = [
-        'branch_id', 'amount', 'category', 'date', 'notes'
+        'branch_id', 'amount', 'expense_date', 'description'
     ];
 
     protected $casts = [
-        'date' => 'date',
+        'expense_date' => 'date',
     ];
 
     protected static function booted()
