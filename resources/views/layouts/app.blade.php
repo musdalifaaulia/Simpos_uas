@@ -324,6 +324,14 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('stock-transfer.*') ? '' : 'collapsed' }}"
+                    href="{{ route('stock-transfer.index') }}">
+                    <i class='bx bx-transfer'></i>
+                    <span>Mutasi Stok</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link {{ request()->routeIs('transaction.*') ? '' : 'collapsed' }}"
                     href="{{ route('transaction.index') }}">
                     <i class='bx bx-cart'></i>
