@@ -1,118 +1,101 @@
-# Admin Template (Laravel 13 + Tailwind 4)
+# SIMPOS (Sistem Point of Sales Multi-Cabang) 🛒
 
-A professional and modern administrative dashboard template built with **Laravel 13** and **Bootstrap 5 (NiceAdmin Template)**. This project provides a solid foundation for building robust back-office applications with built-in user management, settings, and profile features.
+SIMPOS adalah aplikasi Point of Sales (Kasir) modern berskala *Enterprise* yang dirancang khusus untuk bisnis ritel dengan banyak cabang. Dibangun menggunakan framework **Laravel 11**, aplikasi ini dilengkapi dengan fitur manajemen inventaris terpusat, otorisasi berbasis peran (RBAC), dan pelacakan keuangan yang canggih.
 
-## 🚀 Fitur Utama
+![SIMPOS Cover](https://raw.githubusercontent.com/musdalifaaulia/Simpos_uas/main/public/niceadmin/img/laravel.png)
 
-- **Otentikasi & Keamanan**: Login, Logout, dan Middleware Role (Superadmin).
-- **Manajemen User**: CRUD (Create, Read, Update, Delete) data pengguna lengkap dengan foto profil (avatar).
-- **Manajemen Profil**: Halaman profil untuk setiap pengguna (Dashboard Show & Edit).
-- **Pengaturan Aplikasi**: Pengaturan nama aplikasi, logo, kata kunci, dan deskripsi SEO melalui dashboard.
-- **UI/UX Modern**: Menggunakan template NiceAdmin dengan integrasi:
-    - **DataTables**: Untuk tabel data yang interaktif.
-    - **SweetAlert2**: Untuk notifikasi yang cantik.
-    - **Select2**: Untuk dropdown yang lebih baik.
-    - **TinyMCE**: Untuk editor teks kaya.
-- **Ekspor Laporan**: Dukungan ekspor data ke format PDF (menggunakan `laravel-dompdf`).
-- **Lokalisasi**: Sudah dikonfigurasi menggunakan Bahasa Indonesia (`id`).
+## ✨ Daftar Fitur Utama
 
-## 🎨 Kustomisasi Tema (Warna)
+1. **Role-Based Access Control (RBAC)** 🔐
+   - Memiliki 3 tingkat peran: **Superadmin**, **Admin Cabang**, dan **Kasir**.
+   - Sistem *Route Protection* dan *UI Filtering* memastikan setiap peran hanya dapat melihat dan mengakses modul yang sesuai dengan wewenangnya.
+2. **Manajemen Multi-Cabang** 🏢
+   - Seluruh data inventaris, transaksi, dan pengeluaran secara otomatis diisolasi (difilter) berdasarkan cabang (*Global Scope Row-Level Tenancy*).
+   - Fitur menonaktifkan cabang (*Deactivate*) tanpa menghapus riwayat data.
+3. **Point of Sale (Kasir/POS) Cerdas** 💳
+   - Antarmuka kasir *Single Page* interaktif berbasis AJAX/jQuery.
+   - Perhitungan keranjang belanja instan dengan pemotongan stok fisik secara otomatis.
+   - Dilengkapi *Print Preview* untuk cetak struk/faktur.
+4. **Manajemen Mutasi Stok (Inter-Branch Transfer)** 🚚
+   - Pemindahan barang antar cabang dengan perlindungan *Database Transactions* yang bersifat *atomic* (jika gagal satu, gagal semua) sehingga mencegah kebocoran/ketidaksinkronan stok.
+5. **Peringatan Stok Menipis (Low Stock Alert)** ⚠️
+   - Notifikasi dan peringatan otomatis jika stok fisik berada di bawah batas minimum (*min_stock_level*).
+6. **Laporan & Dasbor Analitik (Dashboard)** 📊
+   - Kalkulasi *Real-time* untuk **Total Penjualan**, **Total Pengeluaran**, dan **Profit Bersih (Laba)**.
+   - Superadmin dapat memantau grafik semua cabang, sementara Admin Cabang hanya fokus pada kinerja cabangnya masing-masing.
 
-Template ini telah dimodifikasi agar warna tema utamanya sangat mudah diganti. Anda hanya perlu mengubah **CSS Variables** di satu tempat saja, dan seluruh elemen (Header, Footer, Tombol Primary, Sidebar Aktif, dll.) akan otomatis menyesuaikan.
+---
 
-1. Buka file `resources/views/layouts/app.blade.php`.
-2. Cari bagian `<style>` di dalam tag `<head>`.
-3. Ubah kode Hex warna pada blok `:root`:
+## 🛠️ Prasyarat (Requirements)
 
-```css
-:root {
-    /* ====== UBAH WARNA TEMA DI SINI ====== */
-    --theme-bg: #7c3aed;    /* Warna utama tema (contoh: Ungu/Biru) */
-    --theme-hover: #6d28d9; /* Warna lebih gelap untuk efek hover tombol/menu */
-    --theme-text: #ffffff;  /* Warna teks di atas warna utama */
-    
-    --main-bg: #f6f9ff;     /* Warna background utama halaman konten */
-    /* ===================================== */
-}
-```
-4. Simpan file, lalu muat ulang (refresh) halaman pada browser Anda.
+Sebelum memulai instalasi, pastikan sistem Anda sudah terinstal:
+- PHP >= 8.2
+- Composer
+- MySQL / MariaDB
+- Node.js & NPM (Opsional)
 
-## 🔑 Kredensial Default
+---
 
-Setelah menjalankan seeder, Anda dapat login menggunakan akun berikut:
+## 🚀 Cara Instalasi
 
-| Nama        | Email             | Password   | Role       |
-| ----------- | ----------------- | ---------- | ---------- |
-| Tamus Tahir | `tamus@gmail.com` | `password` | Superadmin |
-| Joh Doe     | `admin@gmail.com` | `password` | Admin      |
+Ikuti langkah-langkah berikut untuk menjalankan SIMPOS di mesin lokal Anda:
 
-## 🛠️ Stack Teknologi
+1. **Clone Repositori**
+   ```bash
+   git clone https://github.com/musdalifaaulia/Simpos_uas.git
+   cd Simpos_uas
+   ```
 
-- **Backend**: PHP 8.3 & Laravel 13.0
-- **Frontend**: Bootstrap 5
-- **Database**: SQLite (default)
-- **Library Penting**:
-    - `barryvdh/laravel-dompdf`
-    - `laravel/tinker`
-    - `pestphp/pest` (Testing)
+2. **Instal Dependensi PHP (Composer)**
+   ```bash
+   composer install
+   ```
 
-## 💻 Instalasi Lokal
+3. **Pengaturan Environment (.env)**
+   - Gandakan file `.env.example` dan ubah namanya menjadi `.env`.
+   - Buka file `.env` dan atur konfigurasi database Anda.
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=simpos_db
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek di mesin lokal Anda:
+4. **Generate Application Key**
+   ```bash
+   php artisan key:generate
+   ```
 
-1. **Clone Repositori**:
+5. **Migrasi dan Eksekusi Seeder (Wajib!)**
+   Jalankan perintah ini untuk membangun tabel database dan memuat *dummy data* (termasuk produk lokal, cabang, dan akun Superadmin bawaan):
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
 
-    ```bash
-    git clone <repository-url>
-    cd admin-template
-    ```
+6. **Tautkan Storage (Storage Link)**
+   Penting agar logo dan avatar pengguna dapat ditampilkan:
+   ```bash
+   php artisan storage:link
+   ```
 
-2. **Instal Dependensi PHP**:
+7. **Jalankan Server Lokal**
+   ```bash
+   php artisan serve
+   ```
+   Aplikasi Anda kini bisa diakses melalui browser di alamat: `http://localhost:8000`
 
-    ```bash
-    composer install
-    ```
+---
 
-3. **Instal Dependensi JavaScript**:
+## 🔑 Akun Default (Superadmin)
 
-    ```bash
-    npm install
-    ```
+Gunakan kredensial berikut untuk melakukan login pertama kali setelah proses *Seeder* selesai:
 
-4. **Konfigurasi Lingkungan**:
-   Salin file `.env.example` menjadi `.env` dan generate key:
+- **Email** : `musdalifa@gmail.com`
+- **Password** : `password`
 
-    ```bash
-    cp .env.example .env
-    php artisan key:generate
-    ```
+*(Anda bisa mengelola, menambah, atau mengubah peran (Admin/Kasir) melalui menu **User Management**).*
 
-5. **Setup Database (SQLite)**:
-   Buat file database kosong dan jalankan migrasi beserta seeder:
-
-    ```bash
-    touch database/database.sqlite
-    php artisan migrate --seed
-    ```
-
-6. **Jalankan Aplikasi**:
-   Anda dapat menggunakan script setup yang sudah disediakan atau menjalankan server secara manual:
-
-    ```bash
-    # Menggunakan script internal
-    composer run dev
-
-    # ATAU menjalankan secara terpisah
-    php artisan serve
-    npm run dev
-    ```
-
-## 📝 Script Tambahan
-
-- `composer run setup`: Menjalankan instalasi lengkap (composer, npm, migrate, build).
-- `composer run test`: Menjalankan unit testing menggunakan Pest.
-
-## 📄 Lisensi
-
-Proyek ini bersifat open-source di bawah lisensi [MIT](https://opensource.org/licenses/MIT).
-# Simpos_uas
+---
+**Dibuat dengan ❤️ oleh Musdalifa Aulia** - 2026
