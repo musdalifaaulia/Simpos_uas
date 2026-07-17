@@ -292,7 +292,36 @@
                         <span>User</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('branch.*') ? '' : 'collapsed' }}"
+                        href="{{ route('branch.index') }}">
+                        <i class='bx bx-store'></i>
+                        <span>Cabang</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('category.*') ? '' : 'collapsed' }}"
+                        href="{{ route('category.index') }}">
+                        <i class='bx bx-category'></i>
+                        <span>Kategori Produk</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('product.*') ? '' : 'collapsed' }}"
+                        href="{{ route('product.index') }}">
+                        <i class='bx bx-box'></i>
+                        <span>Katalog Produk</span>
+                    </a>
+                </li>
             @endif
+
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('inventory.*') ? '' : 'collapsed' }}"
+                    href="{{ route('inventory.index') }}">
+                    <i class='bx bx-archive-in'></i>
+                    <span>Stok / Inventaris</span>
+                </a>
+            </li>
 
 
         </ul>
