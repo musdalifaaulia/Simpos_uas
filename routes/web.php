@@ -9,6 +9,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\TransactionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/category', CategoryController::class)->middleware('role:Superadmin');
     Route::resource('/product', ProductController::class)->middleware('role:Superadmin');
     Route::resource('/inventory', InventoryController::class);
+    Route::resource('/transaction', TransactionController::class);
 
     Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
     Route::put('/setting/{setting}/update', [SettingController::class, 'update'])->name('setting.update');

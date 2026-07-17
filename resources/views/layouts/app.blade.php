@@ -323,6 +323,14 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('transaction.*') ? '' : 'collapsed' }}"
+                    href="{{ route('transaction.index') }}">
+                    <i class='bx bx-cart'></i>
+                    <span>Kasir / POS</span>
+                </a>
+            </li>
+
 
         </ul>
 
