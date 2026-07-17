@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->enum('role', ['Superadmin', 'Admin', 'Cashier'])->default('Cashier');
+            $table->foreignId('branch_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->enum('role', ['Superadmin', 'Admin'])->default('Admin');
+
             $table->rememberToken();
             $table->timestamps();
         });

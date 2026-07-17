@@ -39,6 +39,7 @@ class UserController extends Controller
         $validate = $request->validate([
             'name' => 'required',
             'role' => 'required',
+            'branch_id' => 'nullable|exists:branches,id',
             'password' => 'required|min:8',
             'passwordconfirm' => 'required|same:password',
             'email' => 'required|email|lowercase|unique:users,email',
@@ -109,6 +110,7 @@ class UserController extends Controller
         $validate = $request->validate([
             'name' => 'required',
             'role' => 'required',
+            'branch_id' => 'nullable|exists:branches,id',
             'password' => 'nullable|min:8',
             'passwordconfirm' => 'nullable|same:password',
             'email' => 'required|email|lowercase|unique:users,email,' . $user->id,
