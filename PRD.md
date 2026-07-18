@@ -38,7 +38,14 @@ Banyak UMKM yang sedang berkembang kesulitan melacak stok barang dan memonitor p
 - **Mutasi Stok (Stock Transfer):** Perpindahan barang antar cabang (dari cabang A ke cabang B) dengan status pengiriman (Pending, In Transit, Completed).
 - **Peringatan Stok Tipis (Low Stock Alert):** Notifikasi otomatis ketika stok di bawah batas aman.
 
-### 3.4 Laporan & Analitik (Reporting & Analytics)
+### 3.4 Manajemen Pelanggan & Pemasok (CRM & Supplier)
+- **Pelanggan (Customer):** Menyimpan data nama dan kontak pelanggan untuk keperluan riwayat transaksi.
+- **Pemasok (Supplier):** Mencatat entitas penyedia barang untuk pelacakan sumber inventaris.
+
+### 3.5 Manajemen Pengeluaran (Expense Management)
+- Mencatat pengeluaran operasional per cabang (misalnya biaya listrik, alat tulis) dengan tanggal, nominal, dan deskripsi.
+
+### 3.6 Laporan & Analitik (Reporting & Analytics)
 - Dashboard informatif yang menampilkan metrik kunci (Total Penjualan, Laba Kasar, Stok Hampir Habis).
 - Laporan penjualan harian/bulanan per cabang.
 - Laporan pergerakan barang (Barang Masuk vs Barang Keluar).
@@ -132,12 +139,43 @@ erDiagram
         datetime created_at
     }
 
+    CUSTOMERS {
+        bigint id PK
+        string name
+        string phone
+        string address
+        string email
+    }
+
+    SUPPLIERS {
+        bigint id PK
+        string name
+        string phone
+        string address
+        string email
+    }
+
+    EXPENSES {
+        bigint id PK
+        bigint branch_id FK
+        decimal amount
+        string description
+        datetime expense_date
+    }
+
+    SETTINGS {
+        bigint id PK
+        string key
+        string value
+    }
+
     %% Relationships
     BRANCHES ||--o{ USERS : "has"
     BRANCHES ||--o{ INVENTORIES : "holds"
     BRANCHES ||--o{ TRANSACTIONS : "processes"
     BRANCHES ||--o{ STOCK_TRANSFERS : "sends"
     BRANCHES ||--o{ STOCK_TRANSFERS : "receives"
+    BRANCHES ||--o{ EXPENSES : "incurs"
     
     USERS ||--o{ TRANSACTIONS : "creates"
     
@@ -148,6 +186,7 @@ erDiagram
     PRODUCTS ||--o{ STOCK_TRANSFERS : "transferred_as"
     
     TRANSACTIONS ||--|{ TRANSACTION_DETAILS : "contains"
+    CUSTOMERS ||--o{ TRANSACTIONS : "makes"
 ```
 
 ---

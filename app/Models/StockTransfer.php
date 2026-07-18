@@ -12,7 +12,7 @@ class StockTransfer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id', 'from_branch_id', 'to_branch_id', 'user_id',
+        'reference_number', 'product_id', 'from_branch_id', 'to_branch_id', 'user_id',
         'quantity', 'transfer_date', 'status', 'notes'
     ];
 

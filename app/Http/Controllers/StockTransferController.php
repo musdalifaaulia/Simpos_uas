@@ -21,7 +21,8 @@ class StockTransferController extends Controller
 
     public function create()
     {
-        $branchId = Auth::user()->branch_id ?? 1;
+        $branch = Auth::user()->branch_id ? Branch::find(Auth::user()->branch_id) : Branch::first();
+        $branchId = $branch ? $branch->id : 1;
 
         // Origin branch's inventories with available stock
         $inventories = Inventory::with('product')
@@ -42,7 +43,8 @@ class StockTransferController extends Controller
 
     public function store(Request $request)
     {
-        $branchId = Auth::user()->branch_id ?? 1;
+        $branch = Auth::user()->branch_id ? Branch::find(Auth::user()->branch_id) : Branch::first();
+        $branchId = $branch ? $branch->id : 1;
 
         $validate = $request->validate([
             'product_id' => 'required|exists:products,id',

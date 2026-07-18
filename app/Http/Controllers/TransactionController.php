@@ -81,7 +81,7 @@ class TransactionController extends Controller
                 $detailsData[] = [
                     'product_id' => $item['id'],
                     'quantity' => $qty,
-                    'unit_price' => $price,
+                    'price_at_transaction' => $price,
                     'subtotal' => $subtotal,
                 ];
             }

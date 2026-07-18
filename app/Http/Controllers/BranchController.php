@@ -28,7 +28,8 @@ class BranchController extends Controller
         $validate = $request->validate([
             'name' => 'required',
             'address' => 'nullable',
-            'phone' => 'nullable'
+            'phone' => 'nullable',
+            'is_active' => 'required|boolean'
         ], [
             'name.required' => 'Nama cabang wajib diisi',
         ]);
@@ -65,7 +66,8 @@ class BranchController extends Controller
         $validate = $request->validate([
             'name' => 'required',
             'address' => 'nullable',
-            'phone' => 'nullable'
+            'phone' => 'nullable',
+            'is_active' => 'required|boolean'
         ], [
             'name.required' => 'Nama cabang wajib diisi',
         ]);

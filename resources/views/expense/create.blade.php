@@ -9,14 +9,12 @@
                     <label for="expense_date" class="form-label">Tanggal</label>
                     <input type="date" class="form-control @error('expense_date') is-invalid @enderror" id="expense_date" name="expense_date" value="{{ old('expense_date', date('Y-m-d')) }}">
                     @error('expense_date') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                </div> @enderror
                 </div>
                 
                 <div class="col-md-6 mb-3">
                     <label for="description" class="form-label">Deskripsi Pengeluaran (Kategori/Catatan)</label>
                     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{ old('description') }}</textarea>
                     @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                </div> @enderror
                 </div>
             </div>
 

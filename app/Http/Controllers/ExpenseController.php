@@ -33,7 +33,8 @@ class ExpenseController extends Controller
             'expense_date' => 'required|date'
         ]);
 
-        $validate['branch_id'] = Auth::user()->branch_id ?? 1;
+        $branch = Auth::user()->branch_id ? Branch::find(Auth::user()->branch_id) : Branch::first();
+        $validate['branch_id'] = $branch ? $branch->id : 1;
 
         DB::beginTransaction();
         try {
